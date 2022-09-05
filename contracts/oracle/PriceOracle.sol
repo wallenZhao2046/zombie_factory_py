@@ -1,6 +1,6 @@
 pragma solidity ^0.4.10;
 import "./OracleCallerInterface.sol";
-import "./Ownable.sol";
+import "../Ownable.sol";
 
 contract PriceOracle is Ownable{
 
@@ -19,7 +19,7 @@ contract PriceOracle is Ownable{
         return id;
     }
 
-    function setLatestEthPrice(uint _price, address _callAddress, uint _id) public onlyOwner{
+    function setLatestEthPrice(uint _price, address _callAddress, uint _id) public ownable{
         require(pendingRequests[_id], "should be pendingRequest");
         delete pendingRequests[_id];
         OracleCallerInterface caller = OracleCallerInterface(_callAddress);

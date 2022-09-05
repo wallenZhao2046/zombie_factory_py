@@ -1,7 +1,7 @@
 pragma solidity ^0.4.10;
 
 import "./PriceOracleInterface.sol";
-import "./Ownable.sol";
+import "../Ownable.sol";
 // import "openzeppenlin-solidity/contracts/ownership/Ownable.sol";
 
 contract OracleCaller is Ownable{
@@ -19,12 +19,7 @@ contract OracleCaller is Ownable{
         owner = msg.sender;
     }
 
-    modifier onlyOwner() {
-        require(msg.sender == owner, "only for owner");
-        _;
-    }
-
-    function setOracleInstanceAddress(address _oracleAddress) external onlyOwner {
+    function setOracleInstanceAddress(address _oracleAddress) external ownable {
         oracleInstanceAddress = _oracleAddress;
         priceOracle = PriceOracleInterface(oracleInstanceAddress);
         emit UpdateOracleAddress(oracleInstanceAddress);
