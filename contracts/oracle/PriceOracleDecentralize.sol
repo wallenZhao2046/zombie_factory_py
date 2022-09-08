@@ -50,7 +50,7 @@ contract PriceOracleDecentralize {
         // require(owners.has(msg.sender), "only for owner");
         require(oracles.has(_oracle), "no this oracle");
         require(countOracles > 1, "at least one oracle");
-        countOracles++;
+        countOracles--;
         oracles.remove(_oracle);
         emit RemoveOracle(_oracle);
     }
