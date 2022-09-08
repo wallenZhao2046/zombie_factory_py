@@ -1,25 +1,20 @@
-pragma solidity ^0.4.10;
+pragma solidity ^0.5.0;
 
 import "./PriceOracleInterface.sol";
-import "../Ownable.sol";
-// import "openzeppenlin-solidity/contracts/ownership/Ownable.sol";
+import "OpenZeppelin/openzeppelin-contracts@2.3.0/contracts/ownership/Ownable.sol";
+
 
 contract OracleCaller is Ownable{
 
-    address owner;
     address private oracleInstanceAddress;
     PriceOracleInterface private priceOracle;
 
     mapping(uint => bool) public myRequests;
-    event UpdateOracleAddress(address _oracleAddress);
-    event UpdateEthPrice(uint _price);
-    event ReceivedNewRequestIdEvent(uint _id);
+    event UpdateOracleAddress(address oracleAddress);
+    event UpdateEthPrice(uint price);
+    event ReceivedNewRequestIdEvent(uint id);
 
-    constructor() public {
-        owner = msg.sender;
-    }
-
-    function setOracleInstanceAddress(address _oracleAddress) external ownable {
+    function setOracleInstanceAddress(address _oracleAddress) external onlyOwner {
         oracleInstanceAddress = _oracleAddress;
         priceOracle = PriceOracleInterface(oracleInstanceAddress);
         emit UpdateOracleAddress(oracleInstanceAddress);

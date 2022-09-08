@@ -19,7 +19,7 @@ contract Ownable{
         _;
     }
 
-    function Ownable() public {
+    constructor() public {
         owner = msg.sender;
     }
 
@@ -32,7 +32,7 @@ contract Ownable{
         require(pendingOwner == msg.sender, "only claimer");
         owner = pendingOwner;
         pendingOwner = address(0);
-        ownershipChanged(pendingOwner);
+        emit ownershipChanged(pendingOwner);
     }
     
 }
