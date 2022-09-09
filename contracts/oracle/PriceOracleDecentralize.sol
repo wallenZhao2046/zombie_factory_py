@@ -1,7 +1,7 @@
 pragma solidity ^0.5.0;
-import "OpenZeppelin/openzeppelin-contracts@2.3.0/contracts/math/SafeMath.sol";
-import "OpenZeppelin/openzeppelin-contracts@2.3.0/contracts/ownership/Ownable.sol";
-import "OpenZeppelin/openzeppelin-contracts@2.3.0/contracts/access/Roles.sol";
+import "@openzeppelin/contracts/math/SafeMath.sol";
+import "@openzeppelin//contracts/ownership/Ownable.sol";
+import "@openzeppelin/contracts/access/Roles.sol";
 import "./OracleCallerInterface.sol";
 
 contract PriceOracleDecentralize {

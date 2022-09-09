@@ -1,7 +1,7 @@
 pragma solidity ^0.5.0;
 
 import "./PriceOracleInterface.sol";
-import "OpenZeppelin/openzeppelin-contracts@2.3.0/contracts/ownership/Ownable.sol";
+import "@openzeppelin/contracts/ownership/Ownable.sol";
 
 
 contract OracleCaller is Ownable{

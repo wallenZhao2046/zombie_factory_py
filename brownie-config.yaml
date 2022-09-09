@@ -25,18 +25,17 @@ networks:
         priority_fee: null
         reverting_tx_gas_limit: false
         default_contract_owner: false
-
+dependencies: 
+    - OpenZeppelin/openzeppelin-contracts@2.3.0
 compiler:
-    evm_version: null
+    # evm_version: null
     solc:
         version: null
         optimizer:
             enabled: true
             runs: 200
         remappings: 
-          solc:
-            remappings:
-              - "@openzeppelin=OpenZeppelin/openzeppelin-contracts@2.3.0"
+            - "@openzeppelin=OpenZeppelin/openzeppelin-contracts@2.3.0"
     vyper:
         version: null
 
@@ -65,5 +64,5 @@ hypothesis:
         shrink: true
 
 autofetch_sources: false
-dependencies: null
+
 dev_deployment_artifacts: false
