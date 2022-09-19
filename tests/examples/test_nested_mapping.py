@@ -1,9 +1,25 @@
-from brownie import NestedMapping
+from brownie import NestedMapping, accounts
+import pytest
 
-def test_nested_mapping(bob, guy):
-    mapping = NestedMapping.deploy({'from': bob})
+print(len(accounts))
+
+def test_nested_mapping(mapping, deployer, bob, guy, tom):
     
-    mapping.set(guy.address, True, 'btcusdt', 1000, 15000, 200, {'from': bob})
+    print(f'---- {len(accounts)}')
+    
+    _verify_position(mapping, bob, deployer)
+    _verify_position(mapping, guy, deployer)
+    _verify_position(mapping, tom, deployer)
 
-    position = mapping.get(guy.address, True, 'btcusdt')
+def _verify_position(mapping, account, deployer):
+    import random
+    reserver_value = random.randint(1000, 100000)
+    price = random.randint(1000, 100000)
+    amount = random.randint(1000, 100000)
+    mapping.set(account.address, True, 'btcusdt', reserver_value, price, amount, {'from': deployer})
+    
+    position = mapping.get(account.address, True, 'btcusdt')
     print(position)
+    assert position['reserve'] == reserver_value
+    assert position['enterPrice'] == price
+    assert position['amount'] == amount

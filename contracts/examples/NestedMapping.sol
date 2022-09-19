@@ -54,10 +54,11 @@ contract NestedMapping {
         public onlyOperator{
         require(msg.sender == operator, "only operator can set position");
         uint key = _toKey(_holder, _long, _symbol);
-        Position memory position;
-        position.reserve = _reserve;
-        position.enterPrice = _price;
-        position.amount = _amount;
+        // case1: like a function
+        // Position memory position = Position(_reserve, _price, _amount);
+        // case2: init empty struct, and assign value
+        // case3: init key-value mapping
+        Position memory position = Position({reserve: _reserve, amount: _amount, enterPrice: _price});
         positions[key] = position;
     }
 
