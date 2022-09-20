@@ -16,7 +16,9 @@ def _verify_position(mapping, account, deployer):
     reserver_value = random.randint(1000, 100000)
     price = random.randint(1000, 100000)
     amount = random.randint(1000, 100000)
-    mapping.set(account.address, True, 'btcusdt', reserver_value, price, amount, {'from': deployer})
+    trx = mapping.set(account.address, True, 'btcusdt', reserver_value, price, amount, {'from': deployer})
+    print(trx.events[0].name)
+    print(trx.events[0]['key'])
     
     position = mapping.get(account.address, True, 'btcusdt')
     print(position)

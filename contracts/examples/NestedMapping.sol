@@ -31,6 +31,8 @@ contract NestedMapping {
     mapping(uint256 => Position) public positions;
     address public operator;
 
+    event printKey(uint256 key);
+
     modifier onlyOperator() {
         require(msg.sender == operator, "only operator can do");
         _;
@@ -54,6 +56,7 @@ contract NestedMapping {
         public onlyOperator{
         require(msg.sender == operator, "only operator can set position");
         uint key = _toKey(_holder, _long, _symbol);
+        emit printKey(key);
         // case1: like a function
         // Position memory position = Position(_reserve, _price, _amount);
         // case2: init empty struct, and assign value
@@ -75,7 +78,6 @@ contract NestedMapping {
         uint key = uint(keccak256(abi.encodePacked(_holder, _long, _symbol)));
         return key;
     }
-
 
 
 }
