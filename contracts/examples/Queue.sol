@@ -5,10 +5,10 @@ pragma solidity ^0.5.10;
  */
 
 interface IQueue {
-    function length() returns (uint) ;
-    function push(uint data) ;
-    function pop() returns(uint);
-    function capacity() returns (uint);
+    function length() external returns (uint);
+    function push(uint data) external ;
+    function pop() external returns(uint);
+    function capacity() external returns (uint);
 }
 
 contract Queue {
@@ -19,7 +19,7 @@ contract Queue {
         uint back;
     }
 
-    function length(QueueData storage q) constant internal returns(uint) {
+    function length(QueueData storage q) view internal returns(uint) {
         return q.back - q.front;
     }
 
